@@ -5,5 +5,3 @@ COPY pgpass /
 WORKDIR /pgadmin4/
 
 COPY servers.json .
-
-
