@@ -1,0 +1,41 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "3.47.0"
+    }
+  }
+}
+
+
+provider "aws" {
+  region = "ap-southeast-2"
+}
+
+provider "random" {
+  # Configuration options
+}
+
+resource "random_password" "password" {
+  length = 20
+  special = false
+  override_special = "_%@"
+}
+
+resource "aws_db_instance" "default" {
+  allocated_storage    = 20
+  engine               = "postgres"
+  identifier           =  "dev-db"     
+  engine_version       = "13"
+  instance_class       = "db.t3.medium"
+  name                 = "ntweeklydb001"
+  username             = "dbadmin1"
+  password             = random_password.password.result
+  skip_final_snapshot  = true
+  publicly_accessible  = true
+
+}
+    - Azure:
+        - https://docs.microsoft.com/en-us/azure/developer/terraform/deploy-postgresql-flexible-server-database?tabs=azure-cli
+    - GCloud: 
+        - https://gmusumeci.medium.com/getting-started-with-terraform-and-google-cloud-platform-gcp-deploying-a-postgresql-database-ce1664fb038c
