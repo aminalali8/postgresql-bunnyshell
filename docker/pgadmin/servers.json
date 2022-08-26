@@ -1,0 +1,15 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "Postgres Server",
+            "Group": "Bunnyshell-Servers",
+            "Port": 5432,
+            "Username": "postgres",
+            "Host": "db",
+            "MaintenanceDB": "postgres",
+            "Username": "postgres",
+            "PassFile": "/pgpass",
+            "SSLMode": "prefer"
+        }
+    }
+}
